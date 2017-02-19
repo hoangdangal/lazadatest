@@ -1,6 +1,7 @@
 #setup source code:
 _ copy folder lazadatest to your host folder of web server.
 _ to setup email , edit file .env in folder lazadatest :
+
     MAIL_DRIVER=smtp
     
     MAIL_HOST=smtp.gmail.com
@@ -17,6 +18,7 @@ _ to setup email , edit file .env in folder lazadatest :
     
     POST_CREATED_EMAIL_HEADER = "Post created alert"
 _ config database , edit file .env in folder lazadatest :
+
     DB_CONNECTION=mysql
     
     DB_HOST=127.0.0.1
