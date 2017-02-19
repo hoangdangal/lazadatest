@@ -1,5 +1,6 @@
 #setup source code:
 _ copy folder lazadatest to your host folder of web server.
+
 _ rename env.txt file to .env
 
 _ to setup email , edit file .env in folder lazadatest :
