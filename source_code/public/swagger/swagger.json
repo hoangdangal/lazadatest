@@ -1,0 +1,328 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Sample API",
+        "contact": {
+            "name": "",
+            "url": ""
+        },
+        "version": "1.0"
+    },
+    "host": "localhost/lazadatest/public",
+    "basePath": "",
+    "schemes": [
+        "http"
+    ],
+    "paths": {
+        "/post": {
+            "get": {
+                "tags": [
+                    "List all posts"
+                ],
+                "description": "Return all posts.",
+                "operationId": "",
+                "produces": [
+                    "application/json"
+                ],                
+                "responses": {
+                    "200": {
+                        "description": "List all posts success"
+                    }
+                }
+            },
+            "put":{
+            	"tags": [
+                    "Create a post"
+                ],
+                "description": "Create a post.",
+                "operationId": "",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+				    {
+				      "name": "title",
+				      "in": "formData",
+				      "description": "Title of post",
+				      "required": true,
+				      "type": "string"
+				    },
+				    {
+				      "name": "body",
+				      "in": "formData",
+				      "description": "Content of post",
+				      "required": true,
+				      "type": "string"
+				    }
+				  ],
+                "responses": {
+                    "200": {
+                        "description": "Create post success"
+                    }
+                }
+            },
+            "post":{
+            	"tags": [
+                    "Update a post"
+                ],
+                "description": "Update a post.",
+                "operationId": "",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                	{
+                		"name": "id",
+				      "in": "formData",
+				      "description": "Post Id",
+				      "required": true,
+				      "type": "string"
+                	},
+				    {
+				      "name": "title",
+				      "in": "formData",
+				      "description": "Title of post",
+				      "required": true,
+				      "type": "string"
+				    },
+				    {
+				      "name": "body",
+				      "in": "formData",
+				      "description": "Content of post",
+				      "required": true,
+				      "type": "string"
+				    }
+				  ],
+                "responses": {
+                    "200": {
+                        "description": "Update post success"
+                    }
+                }
+            },
+            "delete":{
+            	"tags": [
+                    "Delete a post"
+                ],
+                "description": "Delete a post.",
+                "operationId": "",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                	{
+                		"name": "id",
+				      "in": "formData",
+				      "description": "Post Id",
+				      "required": true,
+				      "type": "string"
+                	}
+				  ],
+                "responses": {
+                    "200": {
+                        "description": "Delete post success"
+                    }
+                }
+            }             
+        },
+        "/tag": {
+            "get": {
+                "tags": [
+                    "List all tags"
+                ],
+                "description": "Return all tags.",
+                "operationId": "",
+                "produces": [
+                    "application/json"
+                ],                
+                "responses": {
+                    "200": {
+                        "description": "List all tags success"
+                    }
+                }
+            },
+            "put":{
+            	"tags": [
+                    "Create a tag"
+                ],
+                "description": "Create a tag.",
+                "operationId": "",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+				    {
+				      "name": "name",
+				      "in": "formData",
+				      "description": "Tag name",
+				      "required": true,
+				      "type": "string"
+				    }				   
+				  ],
+                "responses": {
+                    "200": {
+                        "description": "Create tag success"
+                    }
+                }
+            },
+            "post":{
+            	"tags": [
+                    "Update a tag"
+                ],
+                "description": "Update a tag.",
+                "operationId": "",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [                	
+				    {
+				      "name": "name",
+				      "in": "formData",
+				      "description": "Tag name",
+				      "required": true,
+				      "type": "string"
+				    },
+				    {
+				      "name": "newName",
+				      "in": "formData",
+				      "description": "New tag name",
+				      "required": true,
+				      "type": "string"
+				    }
+				  ],
+                "responses": {
+                    "200": {
+                        "description": "Update tag success"
+                    }
+                }
+            },
+            "delete":{
+            	"tags": [
+                    "Delete a tag"
+                ],
+                "description": "Delete a tag.",
+                "operationId": "",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                	{
+                		"name": "name",
+				      "in": "formData",
+				      "description": "Tag name",
+				      "required": false,
+				      "type": "string"
+                	}
+				  ],
+                "responses": {
+                    "200": {
+                        "description": "Delete tag success"
+                    }
+                }
+            }             
+        } ,
+        "/tagpost": {        	
+            "post": {
+                "tags": [
+                    "Tag a post by tag"
+                ],
+                "description": "Return 1 if success.",
+                "operationId": "",
+                "produces": [
+                    "application/json"
+                ], 
+                "parameters": [
+                	{
+                		"name": "tagName",
+				      "in": "formData",
+				      "description": "Tag name",
+				      "required": false,
+				      "type": "string"
+                	},
+                	{
+                		"name": "postId",
+				      "in": "formData",
+				      "description": "Id of post",
+				      "required": false,
+				      "type": "string"
+                	}
+				  ],               
+                "responses": {
+                    "200": {
+                        "description": "Tag a post success"
+                    }
+                }
+            }         
+        } ,
+        "/showpost": {        	
+            "post": {
+                "tags": [
+                    "List all posts by tag or tags"
+                ],
+                "description": "Return all posts by tag or tags.",
+                "operationId": "",
+                "produces": [
+                    "application/json"
+                ], 
+                "parameters": [
+                	{
+                		"name": "tags",
+				      "in": "formData",
+				      "description": "Tag or tags , example tag1,tag2,tag3",
+				      "required": false,
+				      "type": "string"
+                	}
+				  ],               
+                "responses": {
+                    "200": {
+                        "description": "List all posts by tag or tags success"
+                    }
+                }
+            }         
+        } ,
+        "/postcount": {        	
+            "post": {
+                "tags": [
+                    "Count all posts by tag or tags"
+                ],
+                "description": "Return amount of posts by tag or tags.",
+                "operationId": "",
+                "produces": [
+                    "application/json"
+                ], 
+                "parameters": [
+                	{
+                		"name": "tags",
+				      "in": "formData",
+				      "description": "Tag or tags , example tag1,tag2,tag3",
+				      "required": false,
+				      "type": "string"
+                	}
+				  ],               
+                "responses": {
+                    "200": {
+                        "description": "Amount of posts by tag or tags. success"
+                    }
+                }
+            }         
+        }       
+    },
+    "definitions": {
+        "Error": {
+            "required": [
+                "code",
+                "message"
+            ],
+            "properties": {
+                "code": {
+                    "description": "Class ApiController",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "message": {
+                    "description": "Class ApiController",
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
