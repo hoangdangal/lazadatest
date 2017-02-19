@@ -55,7 +55,7 @@ CREATE TABLE `posts` (
   `create_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `update_date` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -64,7 +64,6 @@ CREATE TABLE `posts` (
 
 LOCK TABLES `posts` WRITE;
 /*!40000 ALTER TABLE `posts` DISABLE KEYS */;
-INSERT INTO `posts` VALUES (11,'Keep moving','Hello everybody , this is first post updated body','2017-02-18 13:22:31',NULL),(16,'ancientweapon','We found an ancient weapon','2017-02-19 01:15:27',NULL),(17,'alien','Alien space ship detected !','2017-02-19 01:22:42',NULL),(18,'skylab','They come from sky','2017-02-19 03:11:07',NULL),(19,'skylab2','They come from sky','2017-02-19 03:12:04',NULL),(20,'skylab2','They come from sky','2017-02-19 03:18:50',NULL),(21,'skylab2','They come from sky','2017-02-19 03:20:54',NULL),(22,'skylab2','They come from sky','2017-02-19 03:30:50',NULL),(23,'skylab2','They come from sky','2017-02-19 03:37:13',NULL),(24,'skylab2','They come from sky','2017-02-19 03:40:30',NULL),(25,'skylab2','They come from sky','2017-02-19 03:41:35',NULL);
 /*!40000 ALTER TABLE `posts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -88,7 +87,6 @@ CREATE TABLE `tag_on_post` (
 
 LOCK TABLES `tag_on_post` WRITE;
 /*!40000 ALTER TABLE `tag_on_post` DISABLE KEYS */;
-INSERT INTO `tag_on_post` VALUES ('kungfupandar',16),('kungfupandar2',18);
 /*!40000 ALTER TABLE `tag_on_post` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -111,7 +109,6 @@ CREATE TABLE `tags` (
 
 LOCK TABLES `tags` WRITE;
 /*!40000 ALTER TABLE `tags` DISABLE KEYS */;
-INSERT INTO `tags` VALUES ('kungfupandar'),('kungfupandar2');
 /*!40000 ALTER TABLE `tags` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -128,4 +125,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-02-19 15:51:42
+-- Dump completed on 2017-02-19 18:01:26
