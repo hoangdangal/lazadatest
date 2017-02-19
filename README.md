@@ -1,5 +1,6 @@
 #setup source code:
 _ copy folder lazadatest to your host folder of web server.
+
 _ to setup email , edit file .env in folder lazadatest :
 
     MAIL_DRIVER=smtp
