@@ -34,6 +34,7 @@ _ config database , edit file .env in folder lazadatest :
 
 #setup database :
 _ import database from script file in folder database.
+
 _ at local , mysql account is : root , password : 123456.Change it if you need.
 
 #url
