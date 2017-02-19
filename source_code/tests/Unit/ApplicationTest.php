@@ -3,10 +3,8 @@
 namespace Tests\Unit;
 
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
 
-class HttpTest extends TestCase
+class ApplicationTest extends TestCase
 {
     /**
      * test send request GET to /post and get json data success
@@ -215,5 +213,23 @@ class HttpTest extends TestCase
     {
     	$rs = $this->json('post','/postcount',['tags'=>'newcar']);
     	$rs->assertJson(['code' => 1]);
+    }
+    
+    
+    /*********  databse test ******************/
+    /**
+     * test posts table has recode with title = bicycle , body = bicycle
+     */
+    public function testPostTableHasBicyclePost()
+    {
+    	$this->assertDatabaseHas('posts', ['title' => 'bicycle','body'=>'bicycle']);
+    }
+    
+    /**
+     * test tags table has recode with name = newcard
+     */
+    public function testTagTableHasTagNameEqualNewCard()
+    {
+    	$this->assertDatabaseHas('tags', ['name' => 'newcar']);
     }
 }
