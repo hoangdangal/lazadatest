@@ -9,17 +9,20 @@ _ to setup email , edit file .env in folder lazadatest :
     
     MAIL_HOST=smtp.gmail.com
     
-    MAIL_PORT=587
+    MAIL_PORT=465
     
-    MAIL_USERNAME=som@gmail
+    MAIL_USERNAME=someone@gmail
     
     MAIL_PASSWORD=12345
     
-    MAIL_ENCRYPTION=null
+    MAIL_ENCRYPTION=ssl
 
-    MAIL_TO="someone@gmail.com"
+    MAIL_FROM_ADDRESS=someone@gmail
+    
+    MAIL_TO=someone@gmail
     
     POST_CREATED_EMAIL_HEADER = "Post created alert"
+    
 _ config database , edit file .env in folder lazadatest :
 
     DB_CONNECTION=mysql
