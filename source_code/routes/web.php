@@ -1,4 +1,4 @@
-<?php
+ <?php
 
 
 
@@ -58,33 +58,15 @@ Route::put('/post',function (Request $request){
 	
 	// send mail
 	if($rs)
-	{		
-		$mail = new PHPMailer();
-		$message =  View::make('create_post_email_template',['id'=>$post->id]);
-		$mail->isSMTP();                                      // Set mailer to use SMTP
-		$mail->Host = env('MAIL_HOST');  // Specify main and backup SMTP servers
-		$mail->SMTPAuth = true;                               // Enable SMTP authentication
-		$mail->Username = env('MAIL_USERNAME');                // SMTP username
-		$mail->Password = env('MAIL_PASSWORD');                       // SMTP password
-		$mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
-		$mail->Port = env('MAIL_PORT');                                  // TCP port to connect to
-			
-		$mail->setFrom(env('MAIL_USERNAME'), 'Mailer');
-		$mail->addAddress(env('MAIL_TO'));
-		$mail->isHTML(true);                                  // Set email format to HTML
-			
-		$mail->Subject = env('POST_CREATED_EMAIL_HEADER');
-		$mail->Body    = $message;
-		$mail->AltBody = $message;
-			
-		$mail->send();
+	{
+		Illuminate\Support\Facades\Mail::to(env('MAIL_TO'))->send(new App\Mail\PostCreatedMail($post->id));
 	}
 	
 	// set cache
 	$posts = App\Post::all(['id','title','body','create_date']);
 	Cache::put('list_post',$posts);
 	
-	return response()->json(['code' => $rs ? 1:0]);
+	return response()->json(['code' => $rs ? 1:0 ]);
 });
 
 /**
