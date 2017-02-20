@@ -13,5 +13,4 @@ define('LARAVEL_START', microtime(true));
 | loading of any our classes "manually". Feels great to relax.
 |
 */
-require_once __DIR__.'/../PHPMailer/PHPMailerAutoload.php';
 require __DIR__.'/../vendor/autoload.php';
