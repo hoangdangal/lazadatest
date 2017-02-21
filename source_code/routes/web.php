@@ -34,7 +34,7 @@ Route::get('/post',function (){
 	}
 	else 
 	{
-		$posts = App\Post::all(['id','title','body','create_date']);
+		$posts = App\Post::all(['id','title','body','created_at']);
 		Cache::put('list_post',$posts);		
 	}
 	return response()->json(['code' => 1,'posts' => $posts]);
@@ -63,7 +63,7 @@ Route::put('/post',function (Request $request){
 	}
 	
 	// set cache
-	$posts = App\Post::all(['id','title','body','create_date']);
+	$posts = App\Post::all(['id','title','body','created_at']);
 	Cache::put('list_post',$posts);
 	
 	return response()->json(['code' => $rs ? 1:0 ]);
@@ -92,7 +92,7 @@ Route::post('/post',function (Request $request){
 	$rs = $post->save();
 	
 	// set cache
-	$posts = App\Post::all(['id','title','body','create_date']);
+	$posts = App\Post::all(['id','title','body','created_at']);
 	Cache::put('list_post',$posts);
 	
 	return response()->json(['code' => $rs ? 1:0]);
@@ -121,7 +121,7 @@ Route::delete('/post',function (Request $request){
 		$log->save();
 		
 		// set cache
-		$posts = App\Post::all(['id','title','body','create_date']);
+		$posts = App\Post::all(['id','title','body','created_at']);
 		Cache::put('list_post',$posts);
 	}
 	return response()->json(['code' => $rs ? 1:0]);
@@ -155,12 +155,13 @@ Route::put('/tag',function (Request $request){
 	if($request->input('name') == '')
 		return response()->json(['code' => 2,'message' => 'Missing parameter name']);	
 
-	$tag = App\Tags::find(str_replace(' ', '', $request->input('name')));
+//  	$tag = App\Tag::find(str_replace(' ', '', $request->input('name')));
+	$tag = App\Tag::where('name',str_replace(' ', '', $request->input('name')))->first();
 	if($tag != null)
 		return response()->json(['code' => 2,'message' => 'Tag name is exist']);
 		
 	// insert database
-	$tag = new App\Tags();
+	$tag = new App\Tag();
 	$tag->name = str_replace(' ', '', $request->input('name'));	
 	$rs = $tag->save();
 		
@@ -185,12 +186,13 @@ Route::post('/tag',function (Request $request){
 	if($request->input('newName') == '')
 		return response()->json(['code' => 2,'message' => 'Missing parameter newName']);
 		
-	$tag = App\Tags::find(str_replace(' ', '', $request->input('name')));
+	
+	$tag = App\Tag::find(str_replace(' ', '', $request->input('name')));
 	if($tag == null)
 		return response()->json(['code' => 2,'message' => 'Tag is not exist']);
 
 	// update tag
-	$tag->name = $tag->name = str_replace(' ', '', $request->input('newName'));	
+	$tag->name = $request->input('newName');	
 	$rs = $tag->save();
 	
 	// update tag on post if exist
@@ -211,7 +213,7 @@ Route::delete('/tag',function (Request $request){
 	if($request->input('name') == '')
 		return response()->json(['code' => 2,'message' => 'Missing parameter name']);
 
-	$tag = App\Tags::find($request->input('name'));
+	$tag = App\Tag::find($request->input('name'));
 	if($tag == null)
 		return response()->json(['code' => 2,'message' => 'Tag is not exist']);
 
@@ -244,7 +246,7 @@ Route::post('/tagpost',function (Request $request){
 	$tags = DB::select('select name from tags where name = ?',[$request->input('tagName')]);
 	if(sizeof($tags) == 0)
 		return response()->json(['code' => 2,'message' => 'Tag is not exist']);
-			
+		
 	$tagOnPost = new App\Tag_on_post();
 	$tagOnPost->tag_name = $tags[0]->name;
 	$tagOnPost->post_id = $request->input('postId');
@@ -268,7 +270,7 @@ Route::post('/showpost',function (Request $request){
 	}
 	$tags = implode(',', $tagsList);
 	
-	$rs = DB::select("select p.id as post_id,p.title,p.body,p.create_date,t.name from posts p 
+	$rs = DB::select("select p.id as post_id,p.title,p.body,p.created_at,t.name as tag_name from posts p 
 						inner join tag_on_post t_on_p on t_on_p.post_id = p.id
 						inner join tags t on t.name = t_on_p.tag_name
 						where t.name in (".$tags.")

@@ -8,5 +8,4 @@ class Tag_on_post extends Model
 {
     //
     public $table = 'tag_on_post';
-	public $timestamps = false;
 }
