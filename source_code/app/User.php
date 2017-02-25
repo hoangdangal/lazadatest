@@ -2,28 +2,14 @@
 
 namespace App;
 
+use Laravel\Passport\HasApiTokens;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Auth;
+use Illuminate\Foundation\Auth\User;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable
+class User extends User
 {
-    use Notifiable;
-
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = [
-        'name', 'email', 'password',
-    ];
-
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
+    //
+    use HasApiTokens,Notifiable;
 }

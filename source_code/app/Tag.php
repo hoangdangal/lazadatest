@@ -8,4 +8,5 @@ class Tag extends Model
 {
     //
 	public $primaryKey = 'name';
+	public $incrementing = false;
 }

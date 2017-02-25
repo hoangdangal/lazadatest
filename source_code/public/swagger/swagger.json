@@ -8,7 +8,7 @@
         },
         "version": "1.0"
     },
-    "host": "localhost/lazadatest/public",
+    "host": "localhost/lazadatest/public/api",
     "basePath": "",
     "schemes": [
         "http"
@@ -220,7 +220,7 @@
                 }
             }             
         } ,
-        "/tagpost": {        	
+        "/tagonpost": {        	
             "post": {
                 "tags": [
                     "Tag a post by tag"
